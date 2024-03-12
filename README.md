@@ -5,6 +5,7 @@
 - Header
 - Login from
 - Sign up from
+- Validation from
 
 
 # Features
