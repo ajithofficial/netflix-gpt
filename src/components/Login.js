@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 
 const Login = () => {
+  const [signIn, setSignIn] = useState(true);
+
+  const handleToggle = () => {
+    setSignIn((prev) => !prev);
+  };
+
   return (
     <div>
       <Header />
@@ -11,11 +17,35 @@ const Login = () => {
           alt=""
         />
       </div>
-      <form className="w-4/12 absolute bg-black top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] px-20 py-16 rounded-md">
-        <h1 className="text-white text-3xl font-semibold mb-5">Sing In</h1>
-        <input type="text" placeholder="Email or phone number" className="w-full px-5 py-3 m-2 rounded-sm bg-neutral-800" />
-        <input type="password" placeholder="Password" className="w-full px-5 py-3 m-2 rounded-sm" />
-        <button className="p-2 m-2 w-full bg-red-600 text-white font-semibold rounded-sm">Sing In</button>
+      <form autoComplete="off" className="w-3/12 absolute mx-auto my-36 right-0 left-0 text-white bg-black px-10 py-16 rounded-md bg-opacity-80">
+        <h1 className="text-3xl font-semibold mb-5">
+          {signIn ? "Sign In" : "Sign Up"}
+        </h1>
+        {!signIn && <input
+          autoComplete="off"
+          type="text"
+          placeholder="Full Name"
+          className="w-full px-5 py-3 my-3 rounded-sm bg-neutral-800"
+        />}
+        <input
+          autoComplete="off"
+          type="text"
+          placeholder="Email or phone number"
+          className="w-full px-5 py-3 my-3 rounded-sm bg-neutral-800"
+        />
+        <input
+          autoComplete="off"
+          type="password"
+          placeholder="Password"
+          className="w-full px-5 py-3 my-3 rounded-sm bg-neutral-800"
+        />
+        <button className="p-2 my-3 w-full bg-red-600 font-semibold rounded-sm">
+          {signIn ? "Sign In" : "Sign Up"}
+        </button>
+        <p className="py-5 cursor-pointer" onClick={handleToggle}>
+          {signIn ? "New to Netflix?" : "Already Register?"}
+          <b>{signIn ? " Sign up now" : " Sign in now"}</b>
+        </p>
       </form>
     </div>
   );
